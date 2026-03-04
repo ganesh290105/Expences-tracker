@@ -1,0 +1,23 @@
+{
+  "name": "Expenso - Expense Tracker",
+  "short_name": "Expenso",
+  "description": "A simple and creative app to track your personal expenses.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#1f2937",
+  "icons": [
+    {
+      "src": "https://placehold.co/192x192/6366f1/ffffff?text=E",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://placehold.co/512x512/6366f1/ffffff?text=Expenso",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+

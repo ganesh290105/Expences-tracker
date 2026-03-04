@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenso - Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- PWA Manifest Link -->
+    <link rel="manifest" href="manifest.json">
+    <!-- Theme color for browser UI -->
+    <meta name="theme-color" content="#111827">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                 <svg class="logo" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414-.336.75-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V4.5m18 1.5v5.175c0 .621-.504 1.125-1.125 1.125a.75.75 0 0 1-.75-.75v-5.175m0 0h-3.75m-13.5 0h-3.75m13.5 0h3.75m-13.5 0h3.75" />
+                </svg>
+                <h1>Expenso</h1>
+            </div>
+            
+            <button id="menu-toggle">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+            
+            <ul id="nav-menu" class="nav-menu">
+                <li>
+                    <a href="#dashboard" class="nav-link active">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#add-expense" class="nav-link">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Add Expense
+                    </a>
+                </li>
+                <li>
+                    <a href="#all-expenses" class="nav-link">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8"></path></svg>
+                        All Expenses
+                    </a>
+                </li>
+                <li>
+                    <a href="#analytics" class="nav-link">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
+                        Analytics
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Page -->
+            <section id="dashboard" class="page">
+                <h2 class="page-header">Dashboard</h2>
+                <div class="grid grid-cols-3">
+                    <div class="card">
+                        <h3 class="stat-card-label">Total Spent (This Month)</h3>
+                        <p id="total-spent" class="stat-card-value">$0.00</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="stat-card-label">Transactions (This Month)</h3>
+                        <p id="total-transactions" class="stat-card-value">0</p>
+                    </div>
+                     <div class="card">
+                        <h3 class="stat-card-label">Biggest Expense (This Month)</h3>
+                        <p id="biggest-expense" class="stat-card-value">$0.00</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-5 mt-10">
+                    <div class="card col-span-3">
+                        <h3 class="card-title">Recent Expenses</h3>
+                        <div id="recent-expenses-list" class="space-y-4">
+                           <p>No recent expenses. Add one to get started!</p>
+                        </div>
+                    </div>
+                    <div class="card col-span-2">
+                        <h3 class="card-title">Top Categories (This Month)</h3>
+                        <div id="category-summary-dashboard">
+                            <p>No spending data for this month yet.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Add Expense Page -->
+            <section id="add-expense" class="page hidden">
+                <h2 class="page-header">Add New Expense</h2>
+                <div class="card form-container">
+                    <form id="expense-form">
+                        <div class="form-group">
+                            <label for="description" class="form-label">Description</label>
+                            <input type="text" id="description" name="description" required class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="amount" class="form-label">Amount ($)</label>
+                            <input type="number" id="amount" name="amount" min="0.01" step="0.01" required class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="category" class="form-label">Category</label>
+                            <select id="category" name="category" required class="form-select">
+                                <option>Food</option><option>Transport</option><option>Utilities</option><option>Entertainment</option><option>Shopping</option><option>Health</option><option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date" class="form-label">Date</label>
+                            <input type="date" id="date" name="date" required class="form-input">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">Add Expense</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- All Expenses Page -->
+            <section id="all-expenses" class="page hidden">
+                <h2 class="page-header">All Expenses</h2>
+                <div class="card">
+                    <div id="expenses-list-container" class="space-y-4">
+                        <p>No expenses recorded yet.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Page -->
+            <section id="analytics" class="page hidden">
+                <h2 class="page-header">Analytics</h2>
+                <div class="grid grid-cols-2">
+                    <div class="card">
+                        <h3 class="card-title">Spending by Category (All Time)</h3>
+                        <div id="category-table-analytics"></div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Spending Over Time</h3>
+                        <div id="spending-over-time-table"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="toast">Expense added successfully!</div>
+    
+    <script>
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+    <script src="script.js" defer></script>
+</body>
+</html>
+
