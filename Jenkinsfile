@@ -5,31 +5,26 @@ pipeline {
 
         stage('Clone Repository') {
             steps {
+                echo 'Step 1: Cloning GitHub Repository'
                 git branch: 'main', url: 'https://github.com/ganesh290105/Expences-tracker.git'
-            }
-        }
-
-        stage('Install Dependencies') {
-            steps {
-                echo 'Installing dependencies...'
             }
         }
 
         stage('Build Project') {
             steps {
-                echo 'Building Expense Tracker Project...'
+                echo 'Step 2: Building Expense Tracker'
             }
         }
 
-        stage('Test Application') {
+        stage('Test Project') {
             steps {
-                echo 'Running tests...'
+                echo 'Step 3: Testing Application'
             }
         }
 
-        stage('Deploy Application') {
+        stage('Deploy Project') {
             steps {
-                echo 'Deploying application...'
+                echo 'Step 4: Deploying Application'
             }
         }
 
