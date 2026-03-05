@@ -2,9 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone') {
+
+        stage('Clone Repository') {
             steps {
-                echo 'Cloning Repository...'
+                git branch: 'main', url: 'https://github.com/ganesh290105/Expences-tracker.git'
             }
         }
 
