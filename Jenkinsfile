@@ -9,22 +9,29 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Install Dependencies') {
+            steps {
+                echo 'Installing dependencies...'
+            }
+        }
+
+        stage('Build Project') {
             steps {
                 echo 'Building Expense Tracker Project...'
             }
         }
 
-        stage('Test') {
+        stage('Test Application') {
             steps {
-                echo 'Testing Project...'
+                echo 'Running tests...'
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy Application') {
             steps {
-                echo 'Deploying Project...'
+                echo 'Deploying application...'
             }
         }
+
     }
 }
